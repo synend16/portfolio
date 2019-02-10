@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+
+  postgres-portfolio:
+    image: "postgres:10"
+
+  portfolio-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres-portfolio
+    ports:
+      - "8080:8080"
