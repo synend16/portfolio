@@ -4,6 +4,10 @@ import {connect} from "react-redux";
 
 class Home extends Component {
 
+	componentDidMount() {
+
+	}
+
 	render() {
 		return (
 			<div className="TestClass">
@@ -14,7 +18,8 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-	return { errorMessage: state.auth.errorMessage };
+	console.log(state);
+	return { state }
 }
 
 export default connect(mapStateToProps)(Home);
