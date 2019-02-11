@@ -2,6 +2,8 @@ package com.synend.portfolio.utils.converters
 
 import com.synend.portfolio.models.dtos.ProjectDto
 import com.synend.portfolio.models.entities.ProjectEntity
+import com.synend.portfolio.utils.converters.ConventionHandler.Companion.convertTimeStampToZonedTimeDate
+import com.synend.portfolio.utils.validation.ValidationHandler.Companion.validateTimeFormat
 
 class ProjectConverter {
 
@@ -13,15 +15,20 @@ class ProjectConverter {
                     project.url,
                     project.title,
                     project.topics!!.toMutableSet(),
-                    project.description
+                    project.description,
+                    project.lastUpdated.toString()
             )
         }
 
         fun dtoToEntity(projectDto: ProjectDto): ProjectEntity {
+
+
             val entity = ProjectEntity(
                     url = projectDto.url,
                     title = projectDto.title,
-                    description = projectDto.description
+                    description = projectDto.description,
+                    lastUpdated = convertTimeStampToZonedTimeDate(
+                            validateTimeFormat("${projectDto.lastUpdated}.000000"))!!
             )
 
             if (entity.topics != null){

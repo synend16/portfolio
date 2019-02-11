@@ -2,6 +2,7 @@ package com.synend.portfolio.models.dtos
 
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
+import java.time.ZonedDateTime
 
 @ApiModel("DTO representing a Project")
 class ProjectDto(
@@ -19,5 +20,8 @@ class ProjectDto(
         var topics: MutableSet<String>? = null,
 
         @ApiModelProperty("Project description")
-        var description: String? = null
+        var description: String? = null,
+
+        @ApiModelProperty("Project lastUpdated")
+        var lastUpdated: String? = null
 )

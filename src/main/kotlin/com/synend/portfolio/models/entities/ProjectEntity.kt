@@ -1,5 +1,6 @@
 package com.synend.portfolio.models.entities
 
+import java.time.ZonedDateTime
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -22,6 +23,9 @@ class ProjectEntity(
         var topics: Set<String>? = setOf(),
 
         @get:NotBlank
-        var description: String? = null
+        var description: String? = null,
+
+        @get:NotNull
+        var lastUpdated: ZonedDateTime? = null
 
 )

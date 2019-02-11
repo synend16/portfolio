@@ -40,7 +40,7 @@ class ProjectService(
             projectRepository.findAllByTopics(topic!!)
         } else {
             projectRepository.findAll()
-        }
+        }.sortedByDescending { it.lastUpdated }
 
         return ProjectConverter.entityToDto(projects)
     }
@@ -79,6 +79,7 @@ class ProjectService(
             projectDto.topics == null -> handleMissingField("topics")
             projectDto.topics!!.isEmpty() -> handleMissingField("topics")
             projectDto.description.isNullOrEmpty() -> handleMissingField("description")
+            projectDto.lastUpdated == null -> handleMissingField("lastUpdated")
         }
     }
 }
