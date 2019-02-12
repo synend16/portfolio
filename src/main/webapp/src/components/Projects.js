@@ -2,10 +2,20 @@ import React, { Component } from "react";
 import "./../index.scss";
 import {connect} from "react-redux";
 import { getProjects } from "../actions/projects";
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Tabs, Tab, Grid, Cell, Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton } from 'react-mdl';
+import Project from "./sub/Project";
+const imagesPath = process.env.PUBLIC_URL + "/assets/";
+
 
 
 class Projects extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = { activeTab: 0 };
+
+		this.topics = ["latest","kotlin", "java", "react"];
+	}
 
 	componentDidMount() {
 		this.props.getProjects();
@@ -13,45 +23,50 @@ class Projects extends Component {
 
 	render() {
 		return (
-			<div className="TestClass">
-				<h1>My Projects</h1>
-				<p>Here is a collection of my latest public github projects, as well as some projects that i have contributed to.</p>
-				<div>{this.renderpaveView()}</div>
+			<div>
+				<Tabs activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
+					<Tab>Latest</Tab>
+					<Tab>Kotlin</Tab>
+					<Tab>Java</Tab>
+					<Tab>React</Tab>
+				</Tabs>
+				<Grid>
+					<Cell col={12}>
+						<div className="content">{this.toggleCategories()}</div>
+					</Cell>
+				</Grid>
 			</div>
 		);
 	}
 
-	renderpaveView() {
+
+	renderList(list) {
 		if (this.props.projects.data) {
+			return list.map(post => {
+				return (
+					<div key={post.id}>
+						<Project props={post}/>
+					</div>
+				);
+			});
+		} else {
+			return (<div>No content</div>)
+		}
+	}
+
+	toggleCategories() {
+		if (this.props.projects.data && this.props.projects.data.list && this.props.projects.data.list.length > 0) {
+
+			let list = [];
+
+			if (this.state.activeTab === 0) {
+				list = this.props.projects.data.list
+			} else {
+				list = this.props.projects.data.list
+					.filter(post => post.topics.some( p => p === this.topics[this.state.activeTab]));
+			}
 			return (
-				<Grid fluid>
-					<Row>
-						<Col xs={4}>
-							<Row>
-								{this.props.projects.data.list[0].title}
-							</Row>
-							<Row>
-								{this.props.projects.data.list[1].title}
-							</Row>
-						</Col>
-						<Col xs={8}>
-							{this.props.projects.data.list[2].title}
-						</Col>
-					</Row>
-					<Row>
-						<Col xs={8}>
-							{this.props.projects.data.list[2].title}
-						</Col>
-						<Col xs={4}>
-							<Row>
-								{this.props.projects.data.list[0].title}
-							</Row>
-							<Row>
-								{this.props.projects.data.list[1].title}
-							</Row>
-						</Col>
-					</Row>
-				</Grid>
+				<div className="projects-grid">{this.renderList(list)}</div>
 
 			)
 		} else {
@@ -59,26 +74,6 @@ class Projects extends Component {
 		}
 	}
 
-	renderList() {
-		if (this.props.projects.data) {
-			return this.props.projects.data.list.map(post => {
-				return (
-					<div className="item" key={post.id}>
-						<div className="content">
-							<h2>{post.title}</h2>
-							<div className="description">
-								{post.description}
-							</div>
-						</div>
-					</div>
-				);
-			});
-		} else {
-			return (<div>No content</div>)
-		}
-
-
-	}
 }
 
 const mapStateToProps = (state) => {
