@@ -35,6 +35,10 @@ class ExceptionMessages{
         fun invalidTimeFormat(): String {
             return "Bad time format, this follows following formatting rules: \"yyyy-MM-dd HH:mm:ss\""
         }
+
+        fun invalidDateFormat(): String {
+            return "Bad date format, this follows following formatting rules: \"dd-MM-yyyy\""
+        }
         
         fun invalidJsonFormat(): String {
             return "Invalid JSON-format"

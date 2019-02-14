@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 import java.net.URI
 
-@Api(value = "/projects", description = "API for movie entity")
+@Api(value = "/api/projects", description = "API for my projects")
 @RequestMapping(
-        path = ["/projects"],
+        path = ["/api/projects"],
         produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
 @RestController
 @CrossOrigin
@@ -54,7 +54,7 @@ class ProjectController(
 
     @ApiOperation("Create a Project")
     @PostMapping(consumes = ["application/json"])
-    fun createMovie(
+    fun createProject(
             @ApiParam("JSON object representing the Project")
             @RequestBody projectDto: ProjectDto): ResponseEntity<WrappedResponse<ProjectDto>> {
         val dto = projectService.createProject(projectDto)

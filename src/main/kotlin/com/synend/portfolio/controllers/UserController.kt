@@ -23,8 +23,9 @@ import org.springframework.web.bind.annotation.*
 import java.security.Principal
 import javax.servlet.http.HttpSession
 
-@Api(value = "/auth", description = "API for authentication")
+@Api(value = "/api/auth", description = "API for authentication")
 @RequestMapping(
+        path = ["/api/auth"],
         produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
 @RestController
 @CrossOrigin

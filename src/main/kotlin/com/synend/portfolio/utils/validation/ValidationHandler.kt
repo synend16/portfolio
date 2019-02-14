@@ -3,6 +3,8 @@ package com.synend.portfolio.utils.validation
 import com.synend.portfolio.utils.exceptions.UserInputValidationException
 import com.synend.portfolio.utils.messages.ExceptionMessages
 import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.offsetAndLimitInvalid
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class ValidationHandler{
@@ -32,6 +34,21 @@ class ValidationHandler{
                 return paramExpireAt
             } else {
                 throw UserInputValidationException(ExceptionMessages.invalidTimeFormat())
+            }
+        }
+
+        fun validateDateformat(paramName: String, param: String?): LocalDate {
+
+            val format = "dd-MM-yyyy"
+
+            if (param.isNullOrBlank()){
+                throw UserInputValidationException(ExceptionMessages.missingRequiredField(paramName))
+            }
+
+            return try {
+                LocalDate.parse(param!!, DateTimeFormatter.ofPattern(format))
+            } catch (e: Exception){
+                throw UserInputValidationException(ExceptionMessages.invalidDateFormat())
             }
         }
 
