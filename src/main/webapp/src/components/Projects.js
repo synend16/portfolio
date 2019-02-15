@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import "./../index.scss";
 import {connect} from "react-redux";
 import { getProjects } from "../actions/projects";
-import { Tabs, Tab, Grid, Cell, Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton } from 'react-mdl';
+import { Tabs, Tab, Grid, Cell} from 'react-mdl';
 import Project from "./sub/Project";
-const imagesPath = process.env.PUBLIC_URL + "/assets/";
-
 
 
 class Projects extends Component {
@@ -24,7 +22,7 @@ class Projects extends Component {
 	render() {
 		return (
 			<div>
-				<Tabs activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
+				<Tabs className="projects-bar" activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
 					<Tab>Latest</Tab>
 					<Tab>Kotlin</Tab>
 					<Tab>Java</Tab>

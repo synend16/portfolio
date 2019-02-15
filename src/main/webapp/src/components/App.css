@@ -25,6 +25,9 @@
   grid-gap: 1rem;
 }
 
+.projects-bar {
+}
+
 @media (min-width: 1381px) {
 
   .projects-grid {
@@ -98,7 +101,12 @@
 
   .projects-grid {
     grid: auto / repeat(1,1fr);
+    margin: auto;
+    width: calc(100% - 1rem);
+  }
 
+  .projects-bar {
+    margin-top: 50px;
   }
 
 }

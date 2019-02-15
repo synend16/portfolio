@@ -1,6 +1,5 @@
 import React from "react";
-import {Button, Card, CardActions, CardMenu, CardText, CardTitle, IconButton} from "react-mdl";
-const imagesPath = process.env.PUBLIC_URL + "/assets/";
+import {Card, CardMenu, CardText, CardTitle} from "react-mdl";
 
 
 const Project = (props) => {
