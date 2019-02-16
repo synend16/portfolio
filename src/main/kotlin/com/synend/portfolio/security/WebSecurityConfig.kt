@@ -2,6 +2,7 @@ package com.synend.portfolio.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -53,25 +54,28 @@ class WebSecurityConfig(
                 .logout()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                //
-//                .authorizeRequests()
-//                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                .antMatchers(HttpMethod.GET, "/is-authenticated").permitAll()
-//                .antMatchers("/user").authenticated()
-//                .antMatchers("/logout").authenticated()
-//                .antMatchers("/signup").permitAll()
-//                .antMatchers("/login").permitAll()
-//
-//                // Swagger
-//                .antMatchers("/swagger-resources/**").hasRole("ADMIN")
-//                .antMatchers("/swagger-ui.html").hasRole("ADMIN")
-//                .antMatchers("/v2/api-docs").hasRole("ADMIN")
-//                .antMatchers("/webjars/**").hasRole("ADMIN")
-//                .anyRequest().denyAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                // Projects
+                .antMatchers(HttpMethod.GET, "/api/projects").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/projects").hasRole("ADMIN")
+
+                // Experiences
+                .antMatchers(HttpMethod.GET, "/api/experiences").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/experiences").hasRole("ADMIN")
+                .antMatchers("/api/auth/user").authenticated()
+                .antMatchers("/api/auth/logout").authenticated()
+                .antMatchers("/api/auth/signup").permitAll()
+                .antMatchers("/api/auth/login").permitAll()
+
+                // Swagger
+                .antMatchers("/swagger-resources/**").hasRole("ADMIN")
+                .antMatchers("/swagger-ui.html").hasRole("ADMIN")
+                .antMatchers("/v2/api-docs").hasRole("ADMIN")
+                .antMatchers("/webjars/**").hasRole("ADMIN")
+                .anyRequest().denyAll()
                 .and()
                 .csrf().disable()
-                //
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
     }

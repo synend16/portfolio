@@ -3,6 +3,7 @@ package com.synend.portfolio.controllers
 import com.synend.portfolio.models.dtos.auth.AuthenticationDto
 import com.synend.portfolio.models.dtos.auth.RegistrationDto
 import com.synend.portfolio.services.UserService
+import com.synend.portfolio.utils.exceptions.InternalException
 import com.synend.portfolio.utils.exceptions.UserInputValidationException
 import com.synend.portfolio.utils.logger
 import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.missingRequiredField
@@ -63,8 +64,22 @@ class UserController(
         val userId : String = dto.username!!
         val password : String = dto.password!!
 
+        val systemToken = System.getenv("SYSTEM_AUTHENTICATION_TOKEN")
 
-        val registered = userService.createUser(userId, password, setOf("USER"))
+        if (systemToken.isNullOrBlank()){
+            logger.error("Can not find environment variable: SYSTEM_AUTHENTICATION_TOKEN")
+            throw InternalException("Internal system error")
+        }
+
+        when {
+            systemToken != dto.registrationToken -> {
+                logger.warn("Failed attempt to create user, registrationToken not matching systemToken.")
+                throw UserInputValidationException("The registrationToken You provided does not match.", 400)
+            }
+        }
+
+
+        val registered = userService.createUser(userId, password, setOf("ADMIN"))
 
         if (!registered) {
             return ResponseEntity.status(400).build()
@@ -137,6 +152,7 @@ class UserController(
             registrationDto.username.isNullOrBlank() -> handleMissingField("username")
             registrationDto.firstName.isNullOrBlank() -> handleMissingField("firstName")
             registrationDto.lastName.isNullOrBlank() -> handleMissingField("lastName")
+            registrationDto.registrationToken.isNullOrBlank() -> handleMissingField("registrationToken")
         }
     }
 

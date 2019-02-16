@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: portfolio
+  datasource:
+    url: "jdbc:postgresql://postgres-movie:5432/postgres"
+    username: "postgres"
+    password: ""
+    driver-class-name: "org.postgresql.Driver"
+  jpa:
+    database: "postgresql"
+    hibernate:
+      ddl-auto: "validate"
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect

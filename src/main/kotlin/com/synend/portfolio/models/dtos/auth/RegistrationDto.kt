@@ -13,8 +13,11 @@ class RegistrationDto(
         var password: String? = null,
 
         @ApiModelProperty("First name")
-        var firstName: String?,
+        var firstName: String? = null,
 
         @ApiModelProperty("Last name")
-        var lastName: String?
+        var lastName: String? = null,
+
+        @ApiModelProperty("Registration token")
+        var registrationToken: String? = null
 )
