@@ -25,4 +25,4 @@
 /.nb-gradle/
 
 
-/k8s
+*.DS_Store
