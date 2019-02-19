@@ -63,7 +63,7 @@ class Resume extends Component {
                 title={e.title}
                 description={e.description}/>
               )
-              : <div/>
+              : <div>No Content</div>
             }
             <h2>Experience</h2>
             {this.props.work ?
@@ -74,7 +74,7 @@ class Resume extends Component {
                 title={e.title}
                 description={e.description}/>
               )
-              : <div/>
+              : <div>No Content</div>
             }
             <h2>Skills</h2>
             <Skills

@@ -55,6 +55,10 @@ class WebSecurityConfig(
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/").permitAll()
+                .antMatchers(HttpMethod.GET, "/static/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/assets/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
 
                 // Projects
                 .antMatchers(HttpMethod.GET, "/api/projects").permitAll()
