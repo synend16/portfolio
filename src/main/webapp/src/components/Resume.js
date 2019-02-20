@@ -37,7 +37,7 @@ class Resume extends Component {
             <p>
               I am currently working as a Software developer at Aera Payment & Identification.
               At the same time I'm finishing my bachelors degree in software development.
-              I will describe my self as a full stack developer, with the main focus on back-end development.
+              I will describe myself as a full stack developer, with the main focus on back-end development.
               At work I have been developing web applications using SpringBoot with Java and front-end development
               in React. At the same time I have learned other programming languages and frameworks at school such as
               Kotlin, Angular, Ionic, Android development (in Java), C#, Swift, NodeJs, etc.

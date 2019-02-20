@@ -11,4 +11,6 @@ interface ProjectRepository: CrudRepository<ProjectEntity, Long> {
 
     fun findAllByTopics(topics: String): Iterable<ProjectEntity>
 
+    fun existsByUrl(url: String): Boolean
+
 }

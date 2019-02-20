@@ -12,6 +12,8 @@ import org.springframework.cache.Cache
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
+import org.springframework.web.client.RestTemplate
 
 @Configuration
 @EnableCaching // needed for auto-configure the cache beans
@@ -27,7 +29,15 @@ class EhCacheConfig {
 			.setMaxObjectSize(500_000)
 			.build()
 	}
-	
+
+	@Bean
+	fun restTemplate(httpClient: HttpClient): RestTemplate {
+		val requestFactory = HttpComponentsClientHttpRequestFactory()
+		requestFactory.httpClient = httpClient
+		return RestTemplate(requestFactory)
+	}
+
+
 	@Bean
 	fun poolingHttpClientConnectionManager(): PoolingHttpClientConnectionManager {
 		return PoolingHttpClientConnectionManager().apply { maxTotal = 20 }

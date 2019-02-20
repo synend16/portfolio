@@ -45,6 +45,10 @@ class ProjectService(
         return ProjectConverter.entityToDto(projects)
     }
 
+    fun existsByUrl(url: String): Boolean {
+        return projectRepository.existsByUrl(url)
+    }
+
 
     private fun handleUnableToParse(fieldName: String){
         val errorMsg = unableToParse(fieldName)

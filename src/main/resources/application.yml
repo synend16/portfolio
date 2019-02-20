@@ -1,4 +1,4 @@
-
+githubUrl: https://api.github.com/users/synend16/repos
 
 # Swagger bug, disable error for java.lang.NumberFormatException: For input string: ""
 logging:
