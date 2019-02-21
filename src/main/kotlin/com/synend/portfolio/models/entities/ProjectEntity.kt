@@ -13,6 +13,7 @@ class ProjectEntity(
         @get:GeneratedValue
         var id: Long? = null,
 
+        @get:NotBlank
         var url: String? = null,
 
         @get:NotBlank
@@ -22,7 +23,6 @@ class ProjectEntity(
         @get:NotNull
         var topics: Set<String>? = setOf(),
 
-        @get:NotBlank
         var description: String? = null,
 
         @get:NotNull

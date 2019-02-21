@@ -1,6 +1,7 @@
 package com.synend.portfolio.services
 
 import com.synend.portfolio.models.dtos.ProjectDto
+import com.synend.portfolio.models.entities.ProjectEntity
 import com.synend.portfolio.repositories.ProjectRepository
 import com.synend.portfolio.utils.converters.ProjectConverter
 import com.synend.portfolio.utils.exceptions.NotFoundException
@@ -8,9 +9,12 @@ import com.synend.portfolio.utils.exceptions.UserInputValidationException
 import com.synend.portfolio.utils.logger
 import com.synend.portfolio.utils.messages.ExceptionMessages
 import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.illegalParameter
+import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.invalidParameter
 import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.missingRequiredField
 import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.unableToParse
 import com.synend.portfolio.utils.messages.InfoMessages.Companion.entityCreatedSuccessfully
+import com.synend.portfolio.utils.messages.InfoMessages.Companion.entitySuccessfullyUpdated
+import com.synend.portfolio.utils.validation.ValidationHandler.Companion.validateId
 import org.springframework.stereotype.Service
 
 @Service
@@ -24,7 +28,7 @@ class ProjectService(
 
         validateProjectDto(dto)
 
-        dto.title = dto.title!!.capitalize()
+        dto.title = splitWord(dto.title!!)
 
         val project = ProjectConverter.dtoToEntity(dto)
 
@@ -47,6 +51,45 @@ class ProjectService(
 
     fun existsByUrl(url: String): Boolean {
         return projectRepository.existsByUrl(url)
+    }
+
+
+    fun getProject(stringId: String?): ProjectEntity {
+        val id = validateId(stringId, "id")
+
+        checkForProjectInDatabase(id)
+
+        return projectRepository.findById(id).get()
+    }
+
+
+    fun updateProject(stringId: String?, projectDto: ProjectDto) {
+        validateId(stringId, "id")
+        val projectEntity = getProject(stringId)
+
+        validateProjectDto(projectDto)
+        if (projectDto.id.isNullOrEmpty()){
+            handleMissingField("id")
+        }
+
+        if (!stringId.equals(projectDto.id)){
+            val errorMsg = invalidParameter(stringId!!, projectDto.id!!)
+            logger.warn(errorMsg)
+            throw UserInputValidationException(errorMsg)
+        }
+
+        projectEntity.title = splitWord(projectDto.title!!)
+        projectRepository.save(projectEntity)
+        logger.info(entitySuccessfullyUpdated("Project", projectEntity.id.toString()))
+
+    }
+
+    private fun splitWord(word: String): String {
+        word.capitalize()
+        word.replace("_", " ")
+        word.replace("-", " ")
+
+        return word
     }
 
 
@@ -81,9 +124,9 @@ class ProjectService(
             projectDto.url.isNullOrEmpty() -> handleMissingField("url")
             projectDto.title.isNullOrEmpty() -> handleMissingField("title")
             projectDto.topics == null -> handleMissingField("topics")
-            projectDto.topics!!.isEmpty() -> handleMissingField("topics")
-            projectDto.description.isNullOrEmpty() -> handleMissingField("description")
             projectDto.lastUpdated == null -> handleMissingField("lastUpdated")
         }
     }
+
+
 }

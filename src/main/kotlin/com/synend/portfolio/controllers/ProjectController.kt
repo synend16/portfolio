@@ -70,4 +70,22 @@ class ProjectController(
                 )
     }
 
+
+    @ApiOperation("Update a Project")
+    @PutMapping(path = ["/{id}"], consumes = ["application/json"])
+    fun updateProject(
+
+            @ApiParam("The id of the Project")
+            @PathVariable("id")
+            id: String?,
+
+            @ApiParam("JSON object representing the Project")
+            @RequestBody
+            projectDto: ProjectDto): ResponseEntity<Void> {
+        projectService.updateProject(id, projectDto)
+
+        return ResponseEntity.noContent().build()
+
+    }
+
 }
