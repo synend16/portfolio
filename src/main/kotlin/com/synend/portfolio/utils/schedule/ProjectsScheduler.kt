@@ -16,11 +16,7 @@ class ProjectsScheduler(
 
         val gitHubRepositories = gitHubService.getProjects()
 
-        gitHubRepositories.forEach { println(it.topics!!.size) }
-
         val projects = gitHubService.filterExisitingProjectsAndMapThem(gitHubRepositories)
-
-        println(projects.size)
 
         projects.forEach { projectService.createProject(it) }
     }

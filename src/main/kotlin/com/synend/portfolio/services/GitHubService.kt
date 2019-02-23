@@ -1,15 +1,13 @@
 package com.synend.portfolio.services
 
-import com.synend.portfolio.models.GitHubRepository
-import com.synend.portfolio.models.GitHubRepositoryResponse
+import com.synend.portfolio.models.GitHubRepositoryDto
 import com.synend.portfolio.models.dtos.ProjectDto
 import com.synend.portfolio.utils.exceptions.InternalException
 import com.synend.portfolio.utils.logger
 import com.synend.portfolio.utils.messages.ExceptionMessages
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.ParameterizedTypeReference
-import org.springframework.http.HttpMethod
-import org.springframework.http.ResponseEntity
+import org.springframework.http.*
 import org.springframework.stereotype.Service
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.HttpServerErrorException
@@ -24,19 +22,21 @@ class GitHubService(
     @Value("\${githubUrl}")
     private lateinit var githubUrl : String
 
+    private final val acceptHeader= "application/vnd.github.mercy-preview+json"
     val logger = logger<GitHubService>()
 
 
-    fun getProjects(): List<GitHubRepository> {
+    fun getProjects(): List<GitHubRepositoryDto> {
 
+        val headers = HttpHeaders()
+        headers.add("Accept", acceptHeader)
 
-        val response : ResponseEntity<List<GitHubRepository>> = try {
-
+        val response : ResponseEntity<List<GitHubRepositoryDto>> = try {
             restTemplate.exchange(
                     githubUrl,
                     HttpMethod.GET,
-                    null,
-                    object : ParameterizedTypeReference<List<GitHubRepository>>() {})
+                    HttpEntity(null, headers),
+                    object : ParameterizedTypeReference<List<GitHubRepositoryDto>>() {})
 
         } catch (e : HttpClientErrorException) {
             logger.error("client error when accessing github: {}", e.message)
@@ -52,14 +52,11 @@ class GitHubService(
             throw InternalException("INTERNAL ERROR")
         }
 
-        response.body!!.forEach { validateGithubRepository(it) }
-
-
         return response.body!!
     }
 
 
-    fun filterExisitingProjectsAndMapThem(response: List<GitHubRepository>): List<ProjectDto>
+    fun filterExisitingProjectsAndMapThem(response: List<GitHubRepositoryDto>): List<ProjectDto>
     {
         return response
                 .filter { !projectService.existsByUrl(it.svn_url!!) }
@@ -74,7 +71,7 @@ class GitHubService(
     }
 
 
-    private fun validateGithubRepository(response: GitHubRepository) {
+    private fun validateGithubRepository(response: GitHubRepositoryDto) {
         when {
             response.description.isNullOrBlank() -> response.description = ""
             response.name.isNullOrBlank() -> handleMissingField("name")
@@ -86,18 +83,18 @@ class GitHubService(
     }
 
 
-    private fun githubRepositoryToProjectDto(repository: GitHubRepository): ProjectDto {
+    private fun githubRepositoryToProjectDto(repositoryDto: GitHubRepositoryDto): ProjectDto {
 
-        val formatedTime = repository.updated_at!!
+        val formatedTime = repositoryDto.updated_at!!
                 .replace("T", " ")
                 .replace("Z", "")
 
         return ProjectDto(
-                title = repository.name,
+                title = repositoryDto.name,
                 lastUpdated = formatedTime,
-                url = repository.svn_url,
-                topics = repository.topics!!.toMutableSet(),
-                description = repository.description
+                url = repositoryDto.svn_url,
+                topics = repositoryDto.topics!!.toMutableSet(),
+                description = repositoryDto.description
         )
     }
 }
