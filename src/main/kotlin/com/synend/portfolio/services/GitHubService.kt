@@ -77,7 +77,7 @@ class GitHubService(
             response.name.isNullOrBlank() -> handleMissingField("name")
             response.id.isNullOrBlank() -> handleMissingField("id")
             response.svn_url.isNullOrBlank() -> handleMissingField("svn_url")
-            response.updated_at.isNullOrBlank() -> handleMissingField("updated_at")
+            response.pushed_at.isNullOrBlank() -> handleMissingField("pushed_at")
             response.topics == null -> response.topics = mutableListOf()
         }
     }
@@ -85,13 +85,13 @@ class GitHubService(
 
     private fun githubRepositoryToProjectDto(repositoryDto: GitHubRepositoryDto): ProjectDto {
 
-        val formatedTime = repositoryDto.updated_at!!
+        val formattedTime = repositoryDto.pushed_at!!
                 .replace("T", " ")
                 .replace("Z", "")
 
         return ProjectDto(
                 title = repositoryDto.name,
-                lastUpdated = formatedTime,
+                lastUpdated = formattedTime,
                 url = repositoryDto.svn_url,
                 topics = repositoryDto.topics!!.toMutableSet(),
                 description = repositoryDto.description

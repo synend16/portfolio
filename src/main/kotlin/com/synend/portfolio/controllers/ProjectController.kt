@@ -88,4 +88,17 @@ class ProjectController(
 
     }
 
+    @ApiOperation("Delete a Project")
+    @DeleteMapping(path = ["/{id}"], consumes = ["application/json"])
+    fun deleteProject(
+
+            @ApiParam("The id of the Project")
+            @PathVariable("id")
+            id: String?): ResponseEntity<Void> {
+        projectService.deleteProject(id)
+
+        return ResponseEntity.noContent().build()
+
+    }
+
 }

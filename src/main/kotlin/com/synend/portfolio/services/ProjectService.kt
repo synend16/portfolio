@@ -4,6 +4,7 @@ import com.synend.portfolio.models.dtos.ProjectDto
 import com.synend.portfolio.models.entities.ProjectEntity
 import com.synend.portfolio.repositories.ProjectRepository
 import com.synend.portfolio.utils.converters.ProjectConverter
+import com.synend.portfolio.utils.converters.ProjectConverter.Companion.dtoToEntity
 import com.synend.portfolio.utils.exceptions.NotFoundException
 import com.synend.portfolio.utils.exceptions.UserInputValidationException
 import com.synend.portfolio.utils.logger
@@ -13,6 +14,7 @@ import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.invalidPa
 import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.missingRequiredField
 import com.synend.portfolio.utils.messages.ExceptionMessages.Companion.unableToParse
 import com.synend.portfolio.utils.messages.InfoMessages.Companion.entityCreatedSuccessfully
+import com.synend.portfolio.utils.messages.InfoMessages.Companion.entitySuccessfullyDeleted
 import com.synend.portfolio.utils.messages.InfoMessages.Companion.entitySuccessfullyUpdated
 import com.synend.portfolio.utils.validation.ValidationHandler.Companion.validateId
 import org.springframework.stereotype.Service
@@ -64,8 +66,7 @@ class ProjectService(
 
 
     fun updateProject(stringId: String?, projectDto: ProjectDto) {
-        validateId(stringId, "id")
-        val projectEntity = getProject(stringId)
+        val id = validateId(stringId, "id")
 
         validateProjectDto(projectDto)
         if (projectDto.id.isNullOrEmpty()){
@@ -78,10 +79,22 @@ class ProjectService(
             throw UserInputValidationException(errorMsg)
         }
 
-        projectEntity.title = splitWord(projectDto.title!!)
-        projectRepository.save(projectEntity)
-        logger.info(entitySuccessfullyUpdated("Project", projectEntity.id.toString()))
+        val projectEntity = getProject(stringId)
 
+        val entity = dtoToEntity(projectDto)
+        entity.id = id
+        projectRepository.save(entity)
+        logger.info(entitySuccessfullyUpdated("Project", projectEntity.id.toString()))
+    }
+
+
+    fun deleteProject(stringId: String?) {
+        val id =validateId(stringId, "id")
+
+        checkForProjectInDatabase(id)
+
+        projectRepository.deleteById(id)
+        logger.info(entitySuccessfullyDeleted("project", id.toString()))
     }
 
     private fun splitWord(word: String): String {

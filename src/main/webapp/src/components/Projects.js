@@ -61,7 +61,7 @@ class Projects extends Component {
 				list = this.props.projects.data.list
 			} else {
 				list = this.props.projects.data.list
-					.filter(post => post.topics.some( p => p === this.topics[this.state.activeTab]));
+					.filter(post => post.topics.some( p => p.toLowerCase() === this.topics[this.state.activeTab]));
 			}
 			return (
 				<div className="projects-grid">{this.renderList(list)}</div>

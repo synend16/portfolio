@@ -4,10 +4,12 @@ import com.synend.portfolio.models.ExperienceType
 import com.synend.portfolio.models.dtos.ExperienceDto
 import com.synend.portfolio.repositories.ExperienceRepository
 import com.synend.portfolio.utils.converters.ExperienceConverter
+import com.synend.portfolio.utils.exceptions.NotFoundException
 import com.synend.portfolio.utils.exceptions.UserInputValidationException
 import com.synend.portfolio.utils.logger
 import com.synend.portfolio.utils.messages.ExceptionMessages
 import com.synend.portfolio.utils.messages.InfoMessages
+import com.synend.portfolio.utils.validation.ValidationHandler.Companion.validateId
 import org.springframework.stereotype.Service
 
 @Service
@@ -40,6 +42,25 @@ class ExperienceService(
         }.sortedByDescending { it.endYear }
 
         return ExperienceConverter.entitiesToDtos(projects)
+    }
+
+    fun deleteExperience(stringId: String?) {
+
+        val id = validateId(stringId, "id")
+
+        checkForExperienceInDatabase(id)
+
+        experienceRepository.deleteById(id)
+        logger.info(InfoMessages.entitySuccessfullyDeleted("experience", id.toString()))
+
+    }
+
+    private fun checkForExperienceInDatabase(id: Long){
+        if (!experienceRepository.existsById(id)){
+            val errorMsg = ExceptionMessages.notFoundMessage("Experience", "id", id.toString())
+            logger.warn(errorMsg)
+            throw NotFoundException(errorMsg)
+        }
     }
 
     private fun handleMissingField(fieldName: String){

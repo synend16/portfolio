@@ -70,4 +70,17 @@ class ExperienceController(
                         ).validated()
                 )
     }
+
+    @ApiOperation("Delete an Experience")
+    @DeleteMapping(path = ["/{id}"], consumes = ["application/json"])
+    fun deleteProject(
+
+            @ApiParam("The id of the Experience")
+            @PathVariable("id")
+            id: String?): ResponseEntity<Void> {
+        experienceService.deleteExperience(id)
+
+        return ResponseEntity.noContent().build()
+
+    }
 }

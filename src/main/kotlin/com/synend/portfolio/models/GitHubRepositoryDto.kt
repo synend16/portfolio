@@ -13,5 +13,5 @@ data class GitHubRepositoryDto (
 
         var description: String? = null,
 
-        var updated_at: String? = null
+        var pushed_at: String? = null
 ) : Serializable

@@ -63,10 +63,14 @@ class WebSecurityConfig(
                 // Projects
                 .antMatchers(HttpMethod.GET, "/api/projects").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/projects").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/projects/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/projects/**").hasRole("ADMIN")
 
                 // Experiences
-                .antMatchers(HttpMethod.GET, "/api/experiences").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/experiences/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/experiences").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/experiences/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/experiences/**").hasRole("ADMIN")
                 .antMatchers("/api/auth/user").authenticated()
                 .antMatchers("/api/auth/logout").authenticated()
                 .antMatchers("/api/auth/signup").permitAll()
