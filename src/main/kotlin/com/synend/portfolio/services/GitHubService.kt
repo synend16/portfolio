@@ -52,11 +52,13 @@ class GitHubService(
             throw InternalException("INTERNAL ERROR")
         }
 
+        response.body!!.forEach { validateGithubRepository(it) }
+
         return response.body!!
     }
 
 
-    fun filterExisitingProjectsAndMapThem(response: List<GitHubRepositoryDto>): List<ProjectDto>
+    fun filterExistingProjectsAndMapThem(response: List<GitHubRepositoryDto>): List<ProjectDto>
     {
         return response
                 .filter { !projectService.existsByUrl(it.svn_url!!) }

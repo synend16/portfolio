@@ -16,7 +16,7 @@ class ProjectsScheduler(
 
         val gitHubRepositories = gitHubService.getProjects()
 
-        val projects = gitHubService.filterExisitingProjectsAndMapThem(gitHubRepositories)
+        val projects = gitHubService.filterExistingProjectsAndMapThem(gitHubRepositories)
 
         projects.forEach { projectService.createProject(it) }
     }
