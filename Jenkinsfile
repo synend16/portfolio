@@ -7,7 +7,8 @@ node {
   checkout scm
 
   stage 'Maven build'
-  sh("mvn package")
+  def mvnHome = tool name: 'maven-3-6', type: 'maven'
+  sh("${mvnHome}/bin/mvn package")
 
   stage 'Build image'
   sh("docker build -t ${imageTag} .")
