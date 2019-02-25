@@ -13,6 +13,9 @@ node {
   stage 'Build image'
   sh("docker build -t ${imageTag} .")
 
+  stage 'Authenticate to Google Container Registry'
+  sh("gcloud auth configure-docker")
+
   stage 'Push image to registry'
   sh("gcloud docker -- push ${imageTag}")
 
