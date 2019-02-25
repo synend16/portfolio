@@ -3,11 +3,12 @@ apiVersion: v1
 metadata:
   name: portfolio
 spec:
+  type: LoadBalancer
   ports:
     - name: http
-      port: 8080
-      targetPort: 8080
+      port: 80
+      targetPort: 80
       protocol: TCP
   selector:
     role: portfolio
-    app: portfolio-app
+      app: portfolio-app
