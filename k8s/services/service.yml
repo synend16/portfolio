@@ -11,4 +11,4 @@ spec:
       protocol: TCP
   selector:
     role: portfolio
-      app: portfolio-app
+    app: portfolio-app
