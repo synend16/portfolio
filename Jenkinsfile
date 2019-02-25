@@ -2,7 +2,7 @@ node {
   def project = 'the-portfolio'
   def appName = 'portfolio'
   def feSvcName = "${appName}"
-  def imageTag = "synend/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+  def imageTag = "gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
 
   checkout scm
 
@@ -12,9 +12,6 @@ node {
 
   stage 'Build image'
   sh("docker build -t ${imageTag} .")
-
-  stage 'Authenticate to Google Container Registry'
-  sh("gcloud auth configure-docker")
 
   stage 'Push image to registry'
   sh("gcloud docker -- push ${imageTag}")
