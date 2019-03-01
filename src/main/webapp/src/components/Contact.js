@@ -17,7 +17,7 @@ class Contact extends Component {
 										<i className="fa fa-phone-square" aria-hidden="true"/>
 									</ListItemContent>
 									<ListItemContent>
-										+47 984 05 532
+										<a className="link-style" href={`tel:+47 984 05 532`}>+47 984 05 532</a>
 									</ListItemContent>
 								</ListItem>
 								<ListItem>
@@ -25,7 +25,7 @@ class Contact extends Component {
 										<i className="fa fa-envelope" aria-hidden="true"/>
 									</ListItemContent>
 									<ListItemContent>
-										endre.m.synnes@gmail.com
+										<a className="link-style" href={`mailto:endre.m.synnes@gmail.com`}>endre.m.synnes@gmail.com</a>
 									</ListItemContent>
 								</ListItem>
 							</List>

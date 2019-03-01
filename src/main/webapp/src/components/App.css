@@ -10,7 +10,6 @@
   background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -25,7 +24,12 @@
   grid-gap: 1rem;
 }
 
-.projects-bar {
+.projects-grid h2, h3, h4, p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.resume-meta * {
+  font-family: 'Montserrat', sans-serif;
 }
 
 @media (min-width: 1381px) {
@@ -140,17 +144,18 @@
 }
 
 .contact-grid h2 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
 }
 
 .contact-grid p {
-  font-family: 'Oxygen', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
 
 .contact-grid hr {
-  border-top: 5px dotted black;
-  width: 50%;
+  border-top: 1px solid black;
+  width: 80%;
   margin: auto;
 }
 
@@ -184,20 +189,23 @@
   border-radius: 10px;
 }
 
+.banner-text h1, h2, p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+}
+
 .banner-text h1 {
   font-size: 44px;
-  font-weight: bold;
   color: white;
 }
 
 .banner-text h3 {
   font-size: 22px;
-  font-weight: bold;
   color: white;
 }
 
 .banner-text hr {
-  border-top: 5px dotted white;
+  border-top: 1px solid white;
   width: 50%;
   margin: auto;
 }
@@ -211,7 +219,7 @@
 .social-links {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 
@@ -228,5 +236,9 @@
 
 .card-header-text {
   font-size: 1.2em;
+  color: black;
+}
+
+.link-style{
   color: black;
 }

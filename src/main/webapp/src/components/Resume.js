@@ -21,7 +21,7 @@ class Resume extends Component {
 
     return (
       <div>
-        <Grid>
+        <Grid className="resume-meta">
           <Cell col={4}>
             <div style={{textAlign: 'center'}}>
               <img
@@ -42,15 +42,15 @@ class Resume extends Component {
               in React. At the same time I have learned other programming languages and frameworks at school such as
               Kotlin, Angular, Ionic, Android development (in Java), C#, Swift, NodeJs, etc.
             </p>
-            <hr style={{borderTop: '3px solid #833fb2', width: '50%'}}/>
+            <hr style={{borderTop: '1px solid #833fb2', width: '50%'}}/>
             <h5>Address</h5>
             <p>Løkkalia 12 B 0783 Oslo</p>
             <h5>Phone</h5>
-            <p>+47 984 05 532</p>
+            <a className="link-style" href={`tel:+47 984 05 532`}>+47 984 05 532</a>
             <h5>Email</h5>
-            <p>endre.m.synnes@gmail.com</p>
+            <a className="link-style" href={`mailto:endre.m.synnes@gmail.com`}>endre.m.synnes@gmail.com</a>
             <h5>Github</h5>
-            <p>https://github.com/synend16</p>
+            <a className="link-style" href="https://github.com/synend16" rel="noopener noreferrer" target="_blank">https://github.com/synend16</a>
             <hr style={{borderTop: '3px solid #833fb2', width: '50%'}}/>
           </Cell>
           <Cell className="resume-right-col" col={8}>

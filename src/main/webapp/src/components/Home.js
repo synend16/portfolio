@@ -23,11 +23,11 @@ class Home extends Component {
 
 						<div className="banner-text">
 							<h1>Endre Mikal Synnes</h1>
-							<h3>Full Stack Web Developer</h3>
+							<h3>Full Stack Developer</h3>
 
 							<hr/>
 
-							<p> Kotlin | Java | Spring | Swift | C# | JavaScript | React | MySQL | NodeJS | HTML/CSS </p>
+							<p> Kotlin | Java | Spring | Swift | C# | JavaScript | React | MySQL | NodeJS </p>
 
 							<div className="social-links">
 
