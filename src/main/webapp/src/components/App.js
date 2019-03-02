@@ -7,28 +7,33 @@ import './App.css';
 
 class App extends Component {
 
+  close = () => {
+    console.log("called")
+      var d = document.querySelector('.mdl-layout');
+      d.MaterialLayout.toggleDrawer();
+  }
+
   render() {
     return (
       <div className="demo-big-content">
         <Layout>
           <Header className="header-color"
-                  title={<Link style={{textDecoration: 'none', color: 'white'}} to="/">MyPortfolio</Link>} scroll>
+                  title={<Link style={{textDecoration: 'none', color: 'white'}} to="/">Endre Mikal Synnes</Link>} scroll>
             <Navigation>
               <Link to="/resume">Resume</Link>
               <Link to="/projects">Projects</Link>
               <Link to="/contact">Contact</Link>
             </Navigation>
           </Header>
-          <Drawer title={<Link style={{textDecoration: 'none', color: 'black'}} to="/">MyPortfolio</Link>}>
+          <Drawer title={<Link onClick={() => this.close()} style={{textDecoration: 'none', color: 'black'}} to="/">Endre Mikal Synnes</Link>}>
             <Navigation>
-              <Link to="/resume">Resume</Link>
-              <Link to="/projects">Projects</Link>
-              <Link to="/contact">Contact</Link>
+              <Link onClick={() => this.close()} to="/resume">Resume</Link>
+              <Link onClick={() => this.close()} to="/projects">Projects</Link>
+              <Link onClick={() => this.close()} to="/contact">Contact</Link>
             </Navigation>
           </Drawer>
           <Content>
-            <div className="page-content"/>
-            <Main/>
+              <Main/>
           </Content>
         </Layout>
       </div>

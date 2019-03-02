@@ -12,7 +12,7 @@ class Home extends Component {
 
 	render() {
 		return (
-			<div style={{width: '100%', margin: 'auto'}}>
+			<div className="background">
 				<Grid className="landing-grid">
 					<Cell col={12}>
 						<img

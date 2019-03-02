@@ -33,7 +33,7 @@ class Resume extends Component {
 
             <h3 style={{paddingTop: '1em'}}>Endre Mikal Synnes</h3>
             <h4 style={{color: 'grey'}}>Software Developer</h4>
-            <hr style={{borderTop: '3px solid #833fb2', width: '50%'}}/>
+            <hr style={{borderTop: '1px solid #833fb2', width: '80%'}}/>
             <p>
               I am currently working as a Software developer at Aera Payment & Identification.
               At the same time I'm finishing my bachelors degree in software development.
@@ -42,7 +42,7 @@ class Resume extends Component {
               in React. At the same time I have learned other programming languages and frameworks at school such as
               Kotlin, Angular, Ionic, Android development (in Java), C#, Swift, NodeJs, etc.
             </p>
-            <hr style={{borderTop: '1px solid #833fb2', width: '50%'}}/>
+            <hr style={{borderTop: '1px solid #833fb2', width: '80%'}}/>
             <h5>Address</h5>
             <p>Løkkalia 12 B 0783 Oslo</p>
             <h5>Phone</h5>
@@ -51,7 +51,7 @@ class Resume extends Component {
             <a className="link-style" href={`mailto:endre.m.synnes@gmail.com`}>endre.m.synnes@gmail.com</a>
             <h5>Github</h5>
             <a className="link-style" href="https://github.com/synend16" rel="noopener noreferrer" target="_blank">https://github.com/synend16</a>
-            <hr style={{borderTop: '3px solid #833fb2', width: '50%'}}/>
+            <hr style={{borderTop: '1px solid #833fb2', width: '80%'}}/>
           </Cell>
           <Cell className="resume-right-col" col={8}>
             <h2>Education</h2>
@@ -100,6 +100,14 @@ class Resume extends Component {
             <Skills
               skill={"Docker"}
               progress={"60"}
+            />
+            <Skills
+              skill={"Jenkins"}
+              progress={"40"}
+            />
+            <Skills
+              skill={"Git"}
+              progress={"80"}
             />
             <Skills
               skill={"Spring Boot"}
