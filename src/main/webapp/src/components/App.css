@@ -9,7 +9,7 @@
   background: #0F2027;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .social-links {
@@ -33,12 +33,12 @@
 
 .projects-grid h2, h3, h4, p {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .resume-meta * {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 @media (min-width: 1381px) {
@@ -170,12 +170,12 @@
 
 .contact-grid h2 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .contact-grid p {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .contact-grid hr {
