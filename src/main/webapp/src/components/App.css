@@ -260,3 +260,11 @@
 .link-style{
   color: black;
 }
+
+.project-img{
+  height: 500px;
+}
+
+.projects-content{
+  padding: 4rem;
+}

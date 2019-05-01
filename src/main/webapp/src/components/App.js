@@ -21,6 +21,7 @@ class App extends Component {
                   title={<Link style={{textDecoration: 'none', color: 'white'}} to="/">Endre Mikal Synnes</Link>} scroll>
             <Navigation>
               <Link to="/resume">Resume</Link>
+              <Link to="/github-projects">GitHub Projects</Link>
               <Link to="/projects">Projects</Link>
               <Link to="/contact">Contact</Link>
             </Navigation>
@@ -28,6 +29,7 @@ class App extends Component {
           <Drawer title={<Link onClick={() => this.close()} style={{textDecoration: 'none', color: 'black'}} to="/">Endre Mikal Synnes</Link>}>
             <Navigation>
               <Link onClick={() => this.close()} to="/resume">Resume</Link>
+              <Link onClick={() => this.close()} to="/github-projects">GitHub Projects</Link>
               <Link onClick={() => this.close()} to="/projects">Projects</Link>
               <Link onClick={() => this.close()} to="/contact">Contact</Link>
             </Navigation>
