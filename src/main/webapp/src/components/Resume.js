@@ -50,7 +50,7 @@ class Resume extends Component {
             <h5>Email</h5>
             <a className="link-style" href={`mailto:endre.m.synnes@gmail.com`}>endre.m.synnes@gmail.com</a>
             <h5>Github</h5>
-            <a className="link-style" href="https://github.com/endre-synnes" rel="noopener noreferrer" target="_blank">https://github.com/synend16</a>
+            <a className="link-style" href="https://github.com/endre-synnes" rel="noopener noreferrer" target="_blank">https://github.com/endre-synnes</a>
             <hr style={{borderTop: '1px solid #833fb2', width: '80%'}}/>
           </Cell>
           <Cell className="resume-right-col" col={8}>
