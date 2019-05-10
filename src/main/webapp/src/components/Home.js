@@ -37,7 +37,7 @@ class Home extends Component {
 								</a>
 
 								{/* Github */}
-								<a href="https://github.com/synend16" rel="noopener noreferrer" target="_blank">
+								<a href="https://github.com/endre-synnes" rel="noopener noreferrer" target="_blank">
 									<i className="fa fa-github-square" aria-hidden="true" />
 								</a>
 
