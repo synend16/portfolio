@@ -7,7 +7,9 @@ const Enterprise2Exam = () => {
 	return(
 		<Grid>
 			<Cell col={12}>
-			<h3>Cinema</h3>
+				<h3>Cinema <a href="https://github.com/mudasar187/Enterprise_Exam2018" rel="noopener noreferrer" target="_blank">
+					<i className="github-icon-black fa fa-github-square" aria-hidden="true" />
+				</a></h3>
 			</Cell>
 			<Cell col={4}>
 				<p>This project was given as an exam in the course Enterprise 2. It is developed by me and two other class mates.

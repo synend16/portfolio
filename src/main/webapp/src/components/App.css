@@ -31,7 +31,7 @@
   grid-gap: 1rem;
 }
 
-.projects-grid h2, h3, h4, p {
+.projects-grid h2, h3, h4, h5, p, li {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
 }
@@ -250,6 +250,11 @@
 .github-icon {
   color: white;
   font-size: 2em;
+}
+
+.github-icon-black {
+  color: black;
+  font-size: 1em;
 }
 
 .card-header-text {
