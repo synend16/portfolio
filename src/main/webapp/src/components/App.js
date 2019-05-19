@@ -22,6 +22,7 @@ class App extends Component {
             <Navigation>
               <Link to="/resume">Resume</Link>
               <Link to="/projects">Projects</Link>
+              <Link to="/github-projects">GitHub Projects</Link>
               <Link to="/contact">Contact</Link>
             </Navigation>
           </Header>
@@ -29,6 +30,7 @@ class App extends Component {
             <Navigation>
               <Link onClick={() => this.close()} to="/resume">Resume</Link>
               <Link onClick={() => this.close()} to="/projects">Projects</Link>
+              <Link onClick={() => this.close()} to="/github-projects">GitHub Projects</Link>
               <Link onClick={() => this.close()} to="/contact">Contact</Link>
             </Navigation>
           </Drawer>
