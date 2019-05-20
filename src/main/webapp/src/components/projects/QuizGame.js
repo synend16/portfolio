@@ -14,7 +14,7 @@ const QuizGame = () => {
 			<Cell col={8}>
 				<img
 					src={`https://i.imgur.com/qrypyzv.png`}
-					alt="diagram"
+					alt="homepage"
 					className="project-img"
 				/>
 			</Cell>
@@ -58,8 +58,8 @@ const QuizGame = () => {
 			</Cell>
 			<Cell col={8}>
 				<img
-					src={`https://i.imgur.com/QPuoURu.png`}
-					alt="diagram"
+					src={`http://oi65.tinypic.com/ebahch.jpg`}
+					alt="ingame"
 					className="project-img"
 				/>
 			</Cell>
