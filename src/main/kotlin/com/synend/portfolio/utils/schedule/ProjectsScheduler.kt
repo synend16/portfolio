@@ -14,10 +14,12 @@ class ProjectsScheduler(
     @Scheduled(fixedRate = 1000 * 60 * 60 * 60)
     fun updateProjects(){
 
-        val gitHubRepositories = gitHubService.getProjects()
-
-        val projects = gitHubService.filterExistingProjectsAndMapThem(gitHubRepositories)
-
-        projects.forEach { projectService.createProject(it) }
+//        val gitHubRepositories = gitHubService.getProjects()
+//
+//        val projects = gitHubService
+//                .formatGithubResponse(gitHubRepositories)
+//                .filter { !projectService.existsByUrl(it.url!!) }
+//
+//        projects.forEach { projectService.createProject(it) }
     }
 }

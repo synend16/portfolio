@@ -15,8 +15,7 @@ import org.springframework.web.client.RestTemplate
 
 @Service
 class GitHubService(
-        private var restTemplate: RestTemplate,
-        private var projectService: ProjectService) {
+        private var restTemplate: RestTemplate) {
 
 
     @Value("\${githubUrl}")
@@ -58,11 +57,9 @@ class GitHubService(
     }
 
 
-    fun filterExistingProjectsAndMapThem(response: List<GitHubRepositoryDto>): List<ProjectDto>
+    fun formatGithubResponse(response: List<GitHubRepositoryDto>): List<ProjectDto>
     {
-        return response
-                .filter { !projectService.existsByUrl(it.svn_url!!) }
-                .map { githubRepositoryToProjectDto(it) }
+        return response.map { githubRepositoryToProjectDto(it) }
     }
 
 

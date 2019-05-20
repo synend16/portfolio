@@ -63,6 +63,7 @@ class WebSecurityConfig(
                 // Projects
                 .antMatchers(HttpMethod.GET, "/api/projects").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/projects").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/projects").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/api/projects/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/projects/**").hasRole("ADMIN")
 

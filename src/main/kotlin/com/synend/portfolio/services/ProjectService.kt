@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ProjectService(
+        private var gitHubService: GitHubService,
         private var projectRepository: ProjectRepository) {
 
     val logger = logger<ProjectService>()
@@ -103,6 +104,17 @@ class ProjectService(
         word.replace("-", " ")
 
         return word
+    }
+
+    fun refresh() {
+        projectRepository.deleteAll()
+        logger.info("Successfully deleted all projects")
+
+        val gitHubRepositories = gitHubService.getProjects()
+
+        val projects = gitHubService.formatGithubResponse(gitHubRepositories)
+
+        projects.forEach { createProject(it) }
     }
 
 

@@ -101,4 +101,13 @@ class ProjectController(
 
     }
 
+    @ApiOperation("Delete all Project")
+    @DeleteMapping( consumes = ["application/json"])
+    fun refreshAllProjects(): ResponseEntity<Void> {
+        projectService.refresh()
+
+        return ResponseEntity.noContent().build()
+
+    }
+
 }
