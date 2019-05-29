@@ -8,10 +8,9 @@ import './App.css';
 class App extends Component {
 
   close = () => {
-    console.log("called")
-      var d = document.querySelector('.mdl-layout');
+      let d = document.querySelector('.mdl-layout');
       d.MaterialLayout.toggleDrawer();
-  }
+  };
 
   render() {
     return (

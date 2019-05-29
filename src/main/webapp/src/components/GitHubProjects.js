@@ -12,7 +12,7 @@ class GitHubProjects extends Component {
 		super(props);
 		this.state = { activeTab: 0 };
 
-		this.topics = ["latest","kotlin", "java", "react"];
+		this.topics = ["all","kotlin", "java", "react"];
 	}
 
 	componentDidMount() {
@@ -23,7 +23,7 @@ class GitHubProjects extends Component {
 		return (
 			<div>
 				<Tabs className="projects-bar" activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
-					<Tab>Latest</Tab>
+					<Tab>All projects</Tab>
 					<Tab>Kotlin</Tab>
 					<Tab>Java</Tab>
 					<Tab>React</Tab>
@@ -75,7 +75,6 @@ class GitHubProjects extends Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return { projects: state.projects };
 };
 

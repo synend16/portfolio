@@ -16,8 +16,6 @@ class Resume extends Component {
   }
 
   render() {
-    console.log(this.props.education);
-    console.log(this.props.work);
 
     return (
       <div>
@@ -79,39 +77,39 @@ class Resume extends Component {
             <h2>Skills</h2>
             <Skills
               skill={"Java"}
-              progress={"80"}
+              progress={80}
             />
             <Skills
               skill={"Kotlin"}
-              progress={"80"}
+              progress={80}
             />
             <Skills
               skill={"React"}
-              progress={"50"}
+              progress={50}
             />
             <Skills
               skill={"Swift"}
-              progress={"30"}
+              progress={30}
             />
             <Skills
               skill={"C#"}
-              progress={"40"}
+              progress={40}
             />
             <Skills
               skill={"Docker"}
-              progress={"60"}
+              progress={60}
             />
             <Skills
               skill={"Jenkins"}
-              progress={"40"}
+              progress={40}
             />
             <Skills
               skill={"Git"}
-              progress={"80"}
+              progress={80}
             />
             <Skills
               skill={"Spring Boot"}
-              progress={"80"}
+              progress={80}
             />
           </Cell>
         </Grid>
@@ -121,7 +119,6 @@ class Resume extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     education: state.experiences.education,
     work: state.experiences.work

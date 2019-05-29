@@ -7,8 +7,6 @@ const EXPERIENCE = {
 
 export default function(state = EXPERIENCE, action) {
 
-  console.log(action);
-
   switch (action.type) {
 
     case FETCH_EXPERIENCES_EDUCATION:
