@@ -8,7 +8,7 @@ class Projects extends Component {
 
 	render() {
 		return (
-			<div className="projects-content">
+			<div className="page-content">
 				<Enterprise2Exam/>
 				<QuizGame/>
 			</div>
