@@ -1,8 +1,9 @@
-import { FETCH_EXPERIENCES_EDUCATION, FETCH_EXPERIENCES_WORK } from "../actions/types";
+import { FETCH_EXPERIENCES_EDUCATION, FETCH_EXPERIENCES_WORK, FETCH_EXPERIENCES } from "../actions/types";
 
 const EXPERIENCE = {
   education: null,
-  work: null
+  work: null,
+  all: null
 };
 
 export default function(state = EXPERIENCE, action) {
@@ -14,6 +15,9 @@ export default function(state = EXPERIENCE, action) {
 
     case FETCH_EXPERIENCES_WORK:
       return {...state, work: action.payload};
+
+    case FETCH_EXPERIENCES:
+      return {...state, all: action.payload};
 
     default:
       return state;
