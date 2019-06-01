@@ -72,7 +72,7 @@ class ExperienceController(
     }
 
     @ApiOperation("Delete an Experience")
-    @DeleteMapping(path = ["/{id}"], consumes = ["application/json"])
+    @DeleteMapping(path = ["/{id}"])
     fun deleteProject(
 
             @ApiParam("The id of the Experience")
