@@ -27,8 +27,6 @@ class ExperienceForm extends Component {
 	}
 
 	render() {
-		console.log(this.state);
-
 		return (
 			<div>
 				<Grid>
@@ -82,7 +80,7 @@ class ExperienceForm extends Component {
 								selectable
 								shadow={0}
 								rowKeyColumn="id"
-								rows={this.props.allExperiences.data.list}
+								rows={this.props.allExperiences}
 							>
 								<TableHeader name="id" tooltip="The Id of the Experience">Id</TableHeader>
 								<TableHeader name="title" tooltip="The Title of the Experience">Title</TableHeader>
@@ -118,16 +116,18 @@ class ExperienceForm extends Component {
 			this.state.description,
 			this.state.startDate,
 			this.state.endDate)
+			.then( res => {
+				this.props.getAllExperiences();
+			})
+			.catch(err => {throw err});
+
 	};
 
 	deleteSelected = () => {
 		let ids = this.state.selectedRows;
-		console.log(ids);
 		if (ids && ids.length){
-			ids.forEach(id => deleteExperience(id))
+			ids.forEach(id => this.props.deleteExperience(id))
 		}
-
-		this.props.getAllExperiences();
 	}
 
 }
@@ -138,4 +138,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { getAllExperiences })(ExperienceForm)
+export default connect(mapStateToProps, { getAllExperiences, deleteExperience })(ExperienceForm)

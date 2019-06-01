@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Tabs, Tab, Grid, Cell} from 'react-mdl';
+import { Tabs, Tab} from 'react-mdl';
 import ExperienceForm from "./ExperienceForm";
 
 class ControlPanel extends Component {
