@@ -58,7 +58,7 @@ const QuizGame = () => {
 			</Cell>
 			<Cell col={8}>
 				<img
-					src={`http://oi65.tinypic.com/ebahch.jpg`}
+					src={`https://i.ibb.co/Nr7W2sY/Skjermbilde-2019-09-20-kl-10-29-15.png`}
 					alt="ingame"
 					className="project-img"
 				/>
