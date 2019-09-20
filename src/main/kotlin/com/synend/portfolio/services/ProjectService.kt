@@ -33,7 +33,7 @@ class ProjectService(
 
         dto.title = splitWord(dto.title!!)
 
-        val project = ProjectConverter.dtoToEntity(dto)
+        val project = dtoToEntity(dto)
 
         val id = projectRepository.save(project).id.toString()
         logger.info(entityCreatedSuccessfully("project", id))
